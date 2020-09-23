@@ -1,0 +1,38 @@
+﻿@model MVC5_SQL.Models.Usuario
+
+@{
+    ViewBag.Title = "Agregar Usuario";
+}
+
+<div class="col-md-12 text-center">
+    <h1>Agregar Nuevo Usuario</h1>
+</div>
+
+<div class="jumbotron col-md-12">
+
+    <h3>Datos Personales.</h3>
+
+    <!--
+        El parámetro "action" del <form> ejecuta un ActionResult de un Controlador.
+        Sintaxis: Controlador/Action
+    -->
+    <form action="Usuario/AgregarUsuario" method="post">
+
+        <div class="form-group">
+            <label for="Nombre">Nombre.</label>
+            <!-- Para que el <input/> se anexe con la Clase Tipeada, el parámetro "name" del <input/> debe llamarse igual que el valor de la clase a anexar. -->
+            <input type="text" class="form-control" id="NombreUsuario" name="NombreUsuario" value="@Model.NombreUsuario" />
+        </div>
+
+        <div class="form-group">
+            <label for="Correo">Correo.</label>
+            <!-- Para que el <input/> se anexe con la Clase Tipeada, el parámetro "Name" del <input/> debe llamarse igual que el valor de la clase a anexar. -->
+            <input type="email" class="form-control" id="CorreoUsuario" name="CorreoUsuario" value="@Model.CorreoUsuario" />
+        </div>
+
+        <button type="submit" class="btn btn-success">¡Registrar Usuario!</button>
+
+    </form>
+
+</div>
+
