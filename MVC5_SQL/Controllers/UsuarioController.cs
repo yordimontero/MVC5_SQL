@@ -12,6 +12,11 @@ namespace MVC5_SQL.Controllers
         // GET: Usuario
         public ActionResult Index()
         {
+            return View(new Usuario().GetListaUsuarios());
+        }
+        
+        public ActionResult CrearUsuario()
+        {
             /*
                 Pasar como parámetro del View una instancia de la Clase a utilizar.
 
@@ -22,15 +27,17 @@ namespace MVC5_SQL.Controllers
             return View(new Usuario());
         }
 
-        /*
-            Pasar como parámetro del ActionResult una instancia de la Clase a utilizar.
-            Si no se pasa la Clase como parámetro, la instancia se toma como Nula.
-        */
-        [HttpPost]
-        public ActionResult AgregarUsuario(Usuario usuario)
-        {
 
-            if (usuario.InsertarUsuario())
+        [HttpPost]
+        public ActionResult CrearUsuario(Usuario usuario)
+        {
+            /*
+                Pasar como parámetro del ActionResult una instancia de la Clase a utilizar.
+                Si no se pasa la Clase como parámetro, la instancia se toma como Nula.
+            */
+            
+            //Crear usuario.
+            if (usuario.CreateUsuario())
             {
                 return RedirectToAction("Index");
             }
@@ -40,6 +47,28 @@ namespace MVC5_SQL.Controllers
             }
 
         }
+
+        //[HttpPost]
+        //public ActionResult FetchData(Usuario usuario)
+        //{
+
+        //    //if (usuario.GetNombreUsuario())
+        //    //{
+        //    //    if (usuario.FetchCorreoUsuario())
+        //    //    {
+        //    //        return new HttpStatusCodeResult(500, "Nombre: " + usuario.FetchNombreUsuario() + ", Correo: " + usuario.FetchCorreoUsuario());
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        return new HttpStatusCodeResult(500, "Error al traer datos.");
+        //    //    }
+        //    //}
+        //    //else
+        //    //{
+        //    //    return new HttpStatusCodeResult(500, "Error al traer datos.");
+        //    //}
+        //    return new HttpStatusCodeResult(500, "Nombre: " + usuario.GetNombreUsuario());
+        //}
 
     }
 

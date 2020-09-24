@@ -1,38 +1,97 @@
-﻿@model MVC5_SQL.Models.Usuario
+﻿@*Anexar como @model el using System.Data.DataTable para poder acceder a la información del DataTable.*@ 
+@model System.Data.DataTable
 
 @{
     ViewBag.Title = "Agregar Usuario";
 }
 
-<div class="col-md-12 text-center">
-    <h1>Agregar Nuevo Usuario</h1>
-</div>
+<div class="row">
 
-<div class="jumbotron col-md-12">
+    <table class="table table-bordered table-striped">
+        <tr>
+            @*Cabecera de la Tabla.*@
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+        </tr>
 
-    <h3>Datos Personales.</h3>
+        @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+            //Ciclo for para recorrer todas las filas de información del DataTable.
+            <tr>
+                @*Especificar por medio del segundo corchete "[]" el registro de la base de datos a acceder.*@
+                <th>@Model.Rows[i][0]</th>
+                <th>@Model.Rows[i][1]</th>
+                <th>@Model.Rows[i][2]</th>
+            </tr>
+        }
 
-    <!--
-        El parámetro "action" del <form> ejecuta un ActionResult de un Controlador.
-        Sintaxis: Controlador/Action
-    -->
-    <form action="Usuario/AgregarUsuario" method="post">
-
-        <div class="form-group">
-            <label for="Nombre">Nombre.</label>
-            <!-- Para que el <input/> se anexe con la Clase Tipeada, el parámetro "name" del <input/> debe llamarse igual que el valor de la clase a anexar. -->
-            <input type="text" class="form-control" id="NombreUsuario" name="NombreUsuario" value="@Model.NombreUsuario" />
-        </div>
-
-        <div class="form-group">
-            <label for="Correo">Correo.</label>
-            <!-- Para que el <input/> se anexe con la Clase Tipeada, el parámetro "Name" del <input/> debe llamarse igual que el valor de la clase a anexar. -->
-            <input type="email" class="form-control" id="CorreoUsuario" name="CorreoUsuario" value="@Model.CorreoUsuario" />
-        </div>
-
-        <button type="submit" class="btn btn-success">¡Registrar Usuario!</button>
-
-    </form>
+    </table>
 
 </div>
+
+<div class="row">
+    <a class="btn btn-primary btn-block" href="/Usuario/CrearUsuario">Registrar Usuario</a>
+    <button class="btn btn-primary btn-block">Editar Usuario</button>
+</div>
+
+@*<div class="col-md-12 text-center">
+        <h1>Agregar Nuevo Usuario</h1>
+    </div>
+
+    <div class="jumbotron col-md-6">
+
+        <h3>Datos Personales.</h3>
+
+        <!--
+            El parámetro "action" del <form> ejecuta un ActionResult de un Controlador.
+            Sintaxis: Controlador/Action
+        -->
+        <form action="Usuario/AgregarUsuario" method="post">
+
+            <div class="form-group">
+                <label for="Nombre">Nombre.</label>
+                <!-- Para que el <input/> se anexe con la Clase Tipeada, el parámetro "name" del <input/> debe llamarse igual que el valor de la clase a anexar. -->
+                <input type="text" class="form-control" id="NombreUsuario" name="NombreUsuario" value="@Model.NombreUsuario" />
+            </div>
+
+            <div class="form-group">
+                <label for="Correo">Correo.</label>
+                <!-- Para que el <input/> se anexe con la Clase Tipeada, el parámetro "Name" del <input/> debe llamarse igual que el valor de la clase a anexar. -->
+                <input type="email" class="form-control" id="CorreoUsuario" name="CorreoUsuario" value="@Model.CorreoUsuario" />
+            </div>
+
+            <button type="submit" class="btn btn-success">¡Registrar Usuario!</button>
+
+        </form>
+
+    </div>
+
+    <div class="jumbotron col-md-6">
+
+        <h3>Fetch Data</h3>
+
+        <!--
+            El parámetro "action" del <form> ejecuta un ActionResult de un Controlador.
+            Sintaxis: Controlador/Action
+        -->
+        <form action="FetchData" method="post">
+
+            <div class="form-group">
+                <label for="Nombre">Nombre.</label>
+                <!-- Para que el <input/> se anexe con la Clase Tipeada, el parámetro "name" del <input/> debe llamarse igual que el valor de la clase a anexar. -->
+                <input type="text" class="form-control" id="NombreUsuario" name="NombreUsuario" value="@Model.GetNombreUsuario()" />
+            </div>
+
+            <div class="form-group">
+                <label for="Correo">Correo.</label>
+                <!-- Para que el <input/> se anexe con la Clase Tipeada, el parámetro "Name" del <input/> debe llamarse igual que el valor de la clase a anexar. -->
+                <input type="text" class="form-control" id="CorreoUsuario" name="CorreoUsuario" value="@Model.GetCorreoUsuario()" />
+            </div>
+
+            <button type="submit" class="btn btn-success">¡Fetch Data!</button>
+
+        </form>
+
+    </div>*@
 
